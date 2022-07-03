@@ -1,21 +1,13 @@
 const express = require("express");
 const router = express.Router(); // A Router instance is a complete middleware and routing system
+const { getGoals, setGoal, updateGoal, deleteGoal } = require("../controllers/goalController");
 
-router.get("/", (req, res) => {
-  res.send({ message: "Get goals" });
-});
+router.get("/", getGoals);
 
-router.post("/", (req, res) => {
-  res.send({ message: "Set goals" }); // Route to create a goal
-});
+router.post("/", setGoal);
 
-router.put("/:id", (req, res) => {
-  // Put requests need an ID
-  res.send({ message: `Update goal ${req.params.id}` });
-});
+router.put("/:id", updateGoal);
 
-router.get("/", (req, res) => {
-  res.send({ message: "Get goals" });
-});
+router.delete("/:id", deleteGoal);
 
 module.exports = router;
