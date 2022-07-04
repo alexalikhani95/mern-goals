@@ -72,7 +72,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 // Get user data
 // GET /api/users/me
-// access is public
+// access is Private
 const getMe = asyncHandler(async (req, res) => {
   res.json({ message: "User data display" });
 });
