@@ -14,6 +14,7 @@ app.use(express.json()); // body parser for raw json
 app.use(express.urlencoded({ extended: false })); //body parser for urlencoded
 
 app.use("/api/goals", require("./routes/goalRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
 
 app.use(errorHandler);
 
