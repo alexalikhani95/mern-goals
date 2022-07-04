@@ -14,7 +14,36 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Please add all fields");
   }
 
-  res.json({ message: "Register User" });
+  // Check if user exists
+  const userExists = await User.findOne({ email }); // Find the user by email passed in
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("User already exists");
+  }
+
+  // Hash the password
+  const salt = await bcrypt.genSalt(10); // A salt needs to be generated to hash the password. genSalt is a bcrypt method. 10 here is the number of rounds
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  // Create user
+  const user = await User.create({
+    name,
+    email,
+    password: hashedPassword,
+  });
+
+  if (user) {
+    // If the user was created
+    res.status(201).json({
+      _id: user.id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user data");
+  }
 });
 
 // Authenticate a user
