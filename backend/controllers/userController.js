@@ -76,7 +76,7 @@ const loginUser = asyncHandler(async (req, res) => {
 const getMe = asyncHandler(async (req, res) => {
   const { _id, name, email } = await User.findById(req.user.id);
 
-  // Now ehen a user is logged in and hits this route, they should get their own info
+  // Now when a user is logged in and hits this route, they should get their own info
   res.status(200).json({
     id: _id,
     name,
