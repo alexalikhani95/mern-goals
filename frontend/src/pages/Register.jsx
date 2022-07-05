@@ -45,51 +45,45 @@ const Register = () => {
               onChange={onChange}
             />
           </div>
-        </form>
-        <form>
           <div className="form-group">
             <input
               type="email"
               className="form-control"
               id="email"
-              email="email"
+              name="email"
               value={email}
               placeholder="Enter your email"
               onChange={onChange}
             />
           </div>
-        </form>
-        <form>
           <div className="form-group">
             <input
               type="password"
               className="form-control"
               id="password"
-              password="password"
+              name="password"
               value={password}
-              placeholder="Enter your password"
+              placeholder="Enter password"
               onChange={onChange}
             />
           </div>
-        </form>
-        <form>
           <div className="form-group">
             <input
               type="password"
               className="form-control"
               id="password2"
-              password2="password2"
+              name="password2"
               value={password2}
               placeholder="Confirm password"
               onChange={onChange}
             />
           </div>
+          <div className="form-group">
+            <button type="submit" className="btn btn-block">
+              Submit
+            </button>
+          </div>
         </form>
-        <div className="form-group">
-          <button type="submit" className="btn btn-block">
-            Submit
-          </button>
-        </div>
       </section>
     </>
   );
