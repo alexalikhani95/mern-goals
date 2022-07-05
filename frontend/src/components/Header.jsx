@@ -14,7 +14,7 @@ const Header = () => {
             <FaSignInAlt /> Login
           </Link>
           <Link to="/register">
-            <FaUser /> Registe
+            <FaUser /> Register
           </Link>
         </li>
       </ul>
