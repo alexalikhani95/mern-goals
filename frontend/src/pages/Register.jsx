@@ -15,7 +15,7 @@ const Register = () => {
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value, // the key is whatever the name value is in each input
     }));
   };
 
