@@ -74,14 +74,8 @@ const loginUser = asyncHandler(async (req, res) => {
 // GET /api/users/me
 // access is Private
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email } = await User.findById(req.user.id);
-
   // Now when a user is logged in and hits this route, they should get their own info
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  res.status(200).json(req.user);
 });
 
 // Generate JWT
