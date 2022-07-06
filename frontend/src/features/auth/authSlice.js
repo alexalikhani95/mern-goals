@@ -51,8 +51,15 @@ export const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.user = null;
-      }); // if the registration gets rejected
+      }) // if the registration gets rejected
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+      });
   },
+});
+
+export const logout = createAsyncThunk("auth/logout", async () => {
+  await authService.logout();
 });
 
 export const { reset } = authSlice.actions; // reset re has to be exported from actions as its in a reducer object
