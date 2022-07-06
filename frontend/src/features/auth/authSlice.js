@@ -25,6 +25,19 @@ export const register = createAsyncThunk("auth/register", async (user, thunkAPI)
   }
 });
 
+// Loginuser
+export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
+  try {
+    return await authService.login(user);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString(); // If any of this exists, it will be put into this variable
+    return thunkAPI.rejectWithValue(message); // This will reject and send the error message as the payload
+  }
+});
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -44,12 +57,26 @@ export const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
+        state.user = action.payload; //response from the backend
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+        state.user = null;
+      }) // if the registration gets rejected
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload; //response from the backend
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload; //response from the backend
         state.user = null;
       }) // if the registration gets rejected
       .addCase(logout.fulfilled, (state) => {
