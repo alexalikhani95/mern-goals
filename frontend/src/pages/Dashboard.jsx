@@ -11,7 +11,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth); // This user is coming from state.auth
   const { goals, isLoading, isError, message } = useSelector((state) => state.goals);
 
   useEffect(() => {
