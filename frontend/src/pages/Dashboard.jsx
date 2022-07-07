@@ -4,17 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import GoalForm from "../components/GoalForm";
 import Spinner from "../components/Spinner";
-import { getGoals, reset } from "../features/goals/goalSlice";
+import { getGoals } from "../features/goals/goalSlice";
+import { reset } from "../features/auth/authSlice";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth); // This user is coming from state.auth
+  const { user } = useSelector((state) => state.auth);
   const { goals, isLoading, isError, message } = useSelector((state) => state.goals);
 
   useEffect(() => {
-    if (!isError) {
+    if (isError) {
       console.log(message);
     }
 
